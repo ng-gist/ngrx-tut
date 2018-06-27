@@ -47,6 +47,6 @@ This is something that I have seen no one explain in their tutorials and I learn
 ### Flow Diagram
 ![Flow Diagram](https://user-images.githubusercontent.com/13856451/42004666-b9335ff2-7a25-11e8-9fa6-17d21d3e3f2c.png)
 
-*This flow diagram has more components then I have created in the application so far. That is because I have bigger plans for the project which will rest into a usable product.*
+*This flow diagram has more components then I have created in the application so far. These components will follow in future tutorials.*
 
 ## Code
