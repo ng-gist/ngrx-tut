@@ -18,7 +18,6 @@ export class ProfileModule {
 
 @NgModule({
   imports: [
-    ProfileModule,
     StoreModule.forFeature('user', reducers),
     EffectsModule.forFeature([ProfileEffects])
   ],

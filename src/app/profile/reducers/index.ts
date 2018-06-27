@@ -1,4 +1,4 @@
-import * as fromProfile from './profile.reducers'
+import * as fromProfile from './profile.reducers';
 import {UserProfile} from '../models/profile.model';
 import {ActionReducerMap} from '@ngrx/store';
 

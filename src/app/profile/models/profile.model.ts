@@ -1,9 +1,5 @@
-export interface Profile {
+export interface UserProfile {
   login: string;
   avatar_url: string;
   html_url: string;
-}
-
-export interface UserProfile {
-  profile: Profile;
 }

@@ -3,7 +3,7 @@ import {ProfileState} from '../profile/reducers';
 import {Store} from '@ngrx/store';
 import * as ProfileActions from '../profile/actions/profile.actions';
 import {Observable} from 'rxjs';
-import {Profile, UserProfile} from '../profile/models/profile.model';
+import {UserProfile} from '../profile/models/profile.model';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -13,8 +13,8 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class UserProfileComponent implements OnInit {
 
-  profileData$: Observable<UserProfile>;
-  profileData: Profile;
+  profileData$: Observable<ProfileState>;
+  profileData: UserProfile;
 
   constructor(private store: Store<ProfileState>, private route: ActivatedRoute) {
     this.route.paramMap.subscribe(params => {
@@ -24,10 +24,6 @@ export class UserProfileComponent implements OnInit {
     this.profileData$.subscribe((user) => {
       this.profileData = user.profile;
     });
-  }
-
-  getUserProfile() {
-    this.store.dispatch(new ProfileActions.RetriveUserProfile('john'));
   }
 
   ngOnInit() {
