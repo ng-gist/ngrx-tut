@@ -45,7 +45,7 @@ Services are the file that will contain actual logic to make call to external ap
 This is something that I have seen no one explain in their tutorials and I learned it with experience. When you are building a reactive application, you don't need to worry about what your view would look like. In my example, view was the last thing that I built. You only need to concern yourself with the functional requirement and build actions, effects and reducers. View can come later. Infact, there can be two separate teams building functional code and other consuming them in their components. Since views use observables to consume data, they are completely decoupled with the functional code.
 
 ### Flow Diagram
-![Flow Diagram](https://user-images.githubusercontent.com/13856451/41833269-6f936554-7804-11e8-992e-09fa0a11a261.png)
+![Flow Diagram](https://user-images.githubusercontent.com/13856451/42004666-b9335ff2-7a25-11e8-9fa6-17d21d3e3f2c.png)
 
 *This flow diagram has more components then I have created in the application so far. That is because I have bigger plans for the project which will rest into a usable product.*
 
