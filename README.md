@@ -15,6 +15,7 @@ When i started learning Angular 6 and NgRx, I realised all the available tutoria
 - Basic understanding of rxjs
 - Basic understanding of API's and access to some api account. I will be using github for our example.
 - Some knowledge of typescript is nice to have.
+- Install latest version of angular-cli and npm
 
 ## Concepts
 
@@ -49,4 +50,72 @@ This is something that I have seen no one explain in their tutorials and I learn
 
 *This flow diagram has more components then I have created in the application so far. These components will follow in future tutorials.*
 
-## Code
+## Setup
+
+**Lets start by creating a new Angular 6 project:**
+
+```text
+ng new ngrx-tut --routing
+```
+
+Here I have create a new project with routing enabled. Every enterprise level application requires routing. We will make use of routes in future tutorials to load user repositories and issues entered by user.
+ 
+**Next install NgRx store and save it to your package.json file.**
+ 
+```text
+npm install @ngrx/router-store --save
+```
+
+**Now we will create the package structure**
+![Package Structure](https://user-images.githubusercontent.com/13856451/42005499-acc38806-7a29-11e8-8154-adb916ccbb42.png)
+
+We will create a folder for actions, effects, models, reducers and services. I include the type of file in the file name.
+
+**ProfileActions**
+
+```js
+export class RetriveUserProfile implements Action {
+  readonly type = ProfileActionTypes.RetrieveUserProfile;
+
+  constructor(public payload: string) {}
+}
+```
+
+- An action class implements Action interface which requires a property named type. 
+- constructor is optional and it defined when some payload is passed to the Action.
+- In our case, we will pass username as payload.
+ 
+ **ProfileEffects**
+ 
+ ```js
+@Effect()
+getUserProfile = this.actions.pipe(
+  ofType(ProfileActionTypes.RetrieveUserProfile),
+  exhaustMap((action: RetriveUserProfile) => this.profileService.retrieveProfile(action.payload)
+    .pipe(
+      catchError(error => this.profileService.handleAuthError(error)),
+      map((userProfile: UserProfile) => new RetrieveUserProfileSuccess(userProfile))
+    ))
+);
+```
+
+- You can mark a method as effect by added "@Effect()" annotation to the method.
+- "ofType" does a comparison on Observables. Here it will check if Action is of type=RetrieveUserProfile. If so, it will call exhaustMap.
+- exhaustMap will cancel all subsequent call until first call is complete.
+- Within exhaustMap, we are calling service which either returns an error or userProfile
+- If an error is returned, it will be caught by catchError and will be passed on to service to be evaluated.
+- If the service returns success, another action is called with userProfile as its payload.
+
+**ProfileService**
+
+```js
+public retrieveProfile(username: string): Observable<UserProfile> {
+  return this.http
+    .get<UserProfile>(`${this.hostName}/users/${username}?client_id=${this.clientId}&client_secret=${this.clientSecret}`,
+      {responseType: 'json'});
+}
+```
+- retrieveProfile method makes a http call to Git to get profile information and returns the response in json format.
+- response is then processed by effect as described above.
+
+**ProfileReducers**
