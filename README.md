@@ -268,9 +268,3 @@ So far we have learned how to define action, effects and reducers and wire them 
 This will help you build clean, scalable applications which are loosely coupled. Best part of this is, as you build some muscle memory, this becomes way more easier than
 writing traditional applications and lot of the code is one time setup.
 
-### What to expect in coming tutorial?
-- In the coming tutorials, we will modify this application to read data from state using selectors. Selectors provide clean way to massage data before they are returned to the components.
-- We will also learn to push state information to the store. This way we never have to look at router.paramMap and when debugging, we can see state changes.
-- Time travel is one of the biggest features of NgRx. We will use Redux devTools to see state information and move back and forth in state.
-- We will modify our application to read Issues entered by the users and then generate a template post to be submitted to utopian-io for review.
-
