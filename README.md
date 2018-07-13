@@ -171,7 +171,7 @@ Then we add this reducer to the ActionReducerMap with a key (profile in our case
 
 ```js
 this.route.paramMap.subscribe(params => {
-  this.store.dispatch(new ProfileActions.RetriveUserProfile(params.get('userId')));
+  this.store.dispatch(new ProfileActions.RetriveUserProfile(params.get('username')));
 });
 ```
 

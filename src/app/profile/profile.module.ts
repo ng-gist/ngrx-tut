@@ -21,6 +21,6 @@ export class ProfileModule {
     StoreModule.forFeature('user', reducers),
     EffectsModule.forFeature([ProfileEffects])
   ],
-  declarations: [UserProfileComponent]
+  declarations: []
 })
 export class RootProfileModule {}

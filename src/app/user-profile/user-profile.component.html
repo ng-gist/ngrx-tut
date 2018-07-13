@@ -1,9 +1,8 @@
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="{{profileData.avatar_url}}" alt="Card image cap">
+<div class="card" style="width: 18rem;" *ngIf="profileData">
+  <img class="card-img-top" src="{{profileData.profile_image}}" alt="Card image cap">
   <hr>
   <div class="card-body">
-    <h5 class="card-title">{{profileData.login}}</h5>
-    <p class="card-text"></p>
-    <a href="{{profileData.html_url}}" class="btn btn-primary">Go to Repos</a>
+    <h5 class="card-title">{{profileData.name}}</h5>
+    <p class="card-text">{{profileData.about}}</p>
   </div>
 </div>

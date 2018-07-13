@@ -2,9 +2,10 @@ import {UserProfile} from '../models/profile.model';
 import {ProfileActions, ProfileActionTypes} from '../actions/profile.actions';
 
 export const initialState: UserProfile = {
-  login: null,
-  avatar_url: null,
-  html_url: null
+  name: null,
+  profile_image: null,
+  about: null,
+  location: null
 };
 
 export function reducer(state = initialState, action: ProfileActions): UserProfile {
@@ -13,10 +14,7 @@ export function reducer(state = initialState, action: ProfileActions): UserProfi
       return  state;
     }
     case ProfileActionTypes.RetrieveUserProfileSuccess: {
-      return {
-        ...state,
-        ...action.payload
-      };
+      return action.payload;
     }
     default: {
       return state;

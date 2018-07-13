@@ -4,6 +4,7 @@ import {EMPTY, Observable} from 'rxjs';
 import {UserProfile} from '../models/profile.model';
 import {RetrieveUserProfileFailure} from '../actions/profile.actions';
 import {Store} from '@ngrx/store';
+import * as steem from 'steem';
 
 @Injectable()
 export class ProfileService {
@@ -15,6 +16,9 @@ export class ProfileService {
     return this.http
       .get<UserProfile>(`${this.hostName}/users/${username}?client_id=${this.clientId}&client_secret=${this.clientSecret}`,
         {responseType: 'json'});
+  }
+  public retrieveSteemProfile(username: string, cb): Promise<any> {
+    return steem.api.getAccountsAsync([username], cb);
   }
   public handleAuthError(error: HttpErrorResponse): Observable<UserProfile> {
     console.log(`Error: ${JSON.stringify(error, null, 2)}`);

@@ -1,5 +1,6 @@
 export interface UserProfile {
-  login: string;
-  avatar_url: string;
-  html_url: string;
+  name: string;
+  profile_image: string;
+  about: string;
+  location: string;
 }

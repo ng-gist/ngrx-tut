@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import {Store} from '@ngrx/store';
-import {ProfileState} from './profile/reducers';
-import {Observable} from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +7,10 @@ import {Observable} from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  profileData$: Observable<ProfileState>;
   username = '';
-  constructor (private store: Store<ProfileState>) {
-    this.profileData$ = store.select('user');
-    this.profileData$.subscribe((user) => {
-      this.username = user.profile.login;
+  constructor (private route: ActivatedRoute) {
+    this.route.paramMap.subscribe(params => {
+      this.username = params.get('username');
     });
   }
 }

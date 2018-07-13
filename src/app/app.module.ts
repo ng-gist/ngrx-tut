@@ -9,10 +9,12 @@ import {reducers, metaReducers} from './reducers';
 import {EffectsModule} from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import {UserProfileComponent} from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
