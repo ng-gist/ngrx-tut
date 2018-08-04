@@ -1,8 +1,17 @@
-<div class="card" style="width: 18rem;" *ngIf="profileData">
-  <img class="card-img-top" src="{{profileData.profile_image}}" alt="Card image cap">
-  <hr>
-  <div class="card-body">
-    <h5 class="card-title">{{profileData.name}}</h5>
-    <p class="card-text">{{profileData.about}}</p>
+<div class="row">
+  <div class="card col-md-3" *ngIf="profileData">
+    <img class="card-img-top" src="{{profileData.profile_image}}" alt="Card image cap">
+    <hr>
+    <div class="card-body">
+      <h5 class="card-title">{{profileData.name}}</h5>
+      <p class="card-text">{{profileData.about}}</p>
+      <button class="btn btn-primary" (click)="getPosts()">Get Post Details</button>
+    </div>
   </div>
+  <div class="col-md-9">
+    <div *ngFor="let post of userPosts" class="col-md-12 postInfo">
+      {{post.title}}
+    </div>
+  </div>
+
 </div>

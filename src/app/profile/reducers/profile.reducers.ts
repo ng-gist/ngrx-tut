@@ -1,5 +1,6 @@
 import {UserProfile} from '../models/profile.model';
 import {ProfileActions, ProfileActionTypes} from '../actions/profile.actions';
+import {PostModel} from '../models/post.model';
 
 export const initialState: UserProfile = {
   name: null,
@@ -18,6 +19,17 @@ export function reducer(state = initialState, action: ProfileActions): UserProfi
     }
     default: {
       return state;
+    }
+  }
+}
+
+export function postsReducer(state, action: ProfileActions): PostModel[] {
+  switch (action.type) {
+    case ProfileActionTypes.RetrievePostDetailsSuccess: {
+      return action.payload;
+    }
+    default: {
+      return [];
     }
   }
 }
