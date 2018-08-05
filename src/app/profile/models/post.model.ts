@@ -5,4 +5,6 @@ export interface PostModel extends PostMetaModel {
   pending_payout_value: string;
   body: string;
   title: string;
+  category: string;
+  active_votes: Object[];
 }

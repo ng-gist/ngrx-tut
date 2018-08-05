@@ -10,7 +10,9 @@
   </div>
   <div class="col-md-9">
     <div *ngFor="let post of userPosts" class="col-md-12 postInfo">
-      {{post.title}}
+      <h4>{{post.title}}</h4>
+      <span>Category: {{post.category}}</span><br>
+      <span>Total Votes: {{post.active_votes.length}}</span>
     </div>
   </div>
 

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {EMPTY, Observable} from 'rxjs';
 import {UserProfile} from '../models/profile.model';
-import {RetrieveUserProfileFailure} from '../actions/profile.actions';
+import {RetrievePostDetailsFailure, RetrieveUserProfileFailure} from '../actions/profile.actions';
 import {Store} from '@ngrx/store';
 import * as steem from 'steem';
 import {PostMetaModel} from '../models/postMeta.model';
@@ -70,6 +70,15 @@ export class ProfileService {
     console.log(`Error: ${JSON.stringify(error, null, 2)}`);
     if (error.status !== 200) {
       this.store.dispatch(new RetrieveUserProfileFailure(error.message));
+      return EMPTY;
+    }
+    throw new Error(`Error: ${JSON.stringify(error, null, 2)}`);
+  }
+
+  public handlePostRetrieveError(error: HttpErrorResponse): Observable<UserProfile> {
+    console.log(`Error: ${JSON.stringify(error, null, 2)}`);
+    if (error.status !== 200) {
+      this.store.dispatch(new RetrievePostDetailsFailure(error.message));
       return EMPTY;
     }
     throw new Error(`Error: ${JSON.stringify(error, null, 2)}`);

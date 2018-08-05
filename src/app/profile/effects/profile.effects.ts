@@ -33,7 +33,7 @@ export class ProfileEffects {
     ofType(ProfileActionTypes.RetrievePostDetails),
     switchMap((action: RetrievePostDetails) => this.profileService.retrivePostsInfo(action.payload, (err, postList: PostModel[]) => {
       if (err) {
-        catchError(error => this.profileService.handleError(error));
+        catchError(error => this.profileService.handlePostRetrieveError(error));
       }
       if (postList.length > 0) {
         this.store.dispatch(new RetrievePostDetailsSuccess(postList));
